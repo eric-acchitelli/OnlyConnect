@@ -1,0 +1,194 @@
+{
+    "Round 1": {
+        "Two Reeds": {
+            "type": "regular",
+            "clue1": "Accommodations when traveling (usually)",
+            "clue2": "An Orwellian year",
+            "clue3": "Raleigh's lost colony",
+            "clue4": "A group of witches",
+            "connection": "American Horror Stories"
+        },
+        "Twisted Flax": {
+            "type": "regular",
+            "clue1": "Well come.",
+            "clue2": "Peepee",
+            "clue3": "This potato sure is hungry",
+            "clue4": "Hey Daddy Poopypants.",
+            "connection": "Text messages you don't want your mother to read."
+        },
+        "Lion": {
+            "type": "regular",
+            "clue1": "Ficticious Pharaoh",
+            "clue2": "Domesticated",
+            "clue3": "Works together toward a common goal",
+            "clue4": "The flesh of an animal used as food",
+            "connection": "Anagrams: ATEM, TAME, TEAM, MEAT"
+        },
+        "Horned Viper": {
+            "type": "regular",
+            "clue1": "Damien Poitier",
+            "clue2": "Josh Dallas",
+            "clue3": "Terrence Howard",
+            "clue4": "Edward Norton",
+            "connection": "Recast in the Marvel Cinematic Universe"
+        },
+        "Water": {
+            "type": "regular",
+            "clue1": "3 + 7 = 10",
+            "clue2": "4 + 6 = 7",
+            "clue3": "8 + 1 = 8",
+            "clue4": "1 + 1 = 6",
+            "connection": "Sums of Letters"
+        },
+        "Eye of Horus": {
+            "type": "regular",
+            "clue1": "Fruit: MELON",
+            "clue2": "Sci-fi Show: DOCTOR WHO",
+            "clue3": "13: TWELVE PLUS ONE",
+            "clue4": "City in Japan: TOKYO",
+            "connection": "Anagrams Provide Additional Answers"
+        }
+    },
+    "Round 2": {
+        "Two Reeds": {
+            "type": "regular",
+            "clue1": "2019: Wilbur",
+            "clue2": "2020: Remy",
+            "clue3": "2021: Babe",
+            "clue4": "2022: (e.g.) Tony",
+            "connection": "(Fictional) Animals of the Chinese Zodiac"
+        },
+        "Twisted Flax": {
+            "type": "regular",
+            "clue1": "1,5: Radon",
+            "clue2": "1,4: Platinum",
+            "clue3": "1,3: Chlorine",
+            "clue4": "1,2: (e.g) Neon",
+            "connection": "Chemical Symbols"
+        },
+        "Lion": {
+            "type": "regular",
+            "clue1": "3: Impressive",
+            "clue2": "4: Splendid",
+            "clue3": "5: Great",
+            "clue4": "6: Phew",
+            "connection": "Wordle Scores"
+        },
+        "Horned Viper": {
+            "type": "regular",
+            "clue1": "Coarse",
+            "clue2": "Rough",
+            "clue3": "Irritating",
+            "clue4": "Gets Everywhere",
+            "connection": "I don't like sand..."
+        },
+        "Water": {
+            "type": "regular",
+            "clue1": "A metallic statistician",
+            "clue2": "A close friend",
+            "clue3": "Behind schedule",
+            "clue4": "Short for Katherine",
+            "connection": "Nate, Mate, Late, Kate"
+        },
+        "Eye of Horus": {
+            "type": "regular",
+            "clue1": "$0.01",
+            "clue2": "$0.06",
+            "clue3": "$0.16",
+            "clue4": "$0.41",
+            "connection": "Adding Up American Coins"
+        }
+    },
+    "Round 3": {
+        "Lion": {
+            "Set 1": {
+                "clue1": "Mekong",
+                "clue2": "Ganges",
+                "clue3": "Yangtze",
+                "clue4": "Tigris",
+                "connection": "Rivers in Asia & the Middle East"
+            },
+            "Set 2": {
+                "clue1": "Wes",
+                "clue2": "Gillian",
+                "clue3": "Louie",
+                "clue4": "Pamela",
+                "connection": "Famous Andersons"
+            },
+            "Set 3": {
+                "clue1": "Poe",
+                "clue2": "Poul",
+                "clue3": "Indus",
+                "clue4": "Pas",
+                "connection": "___-try"
+            },
+            "Set 4": {
+                "clue1": "Chandler",
+                "clue2": "Grifton",
+                "clue3": "Doyle",
+                "clue4": "Christie",
+                "connection": "Mystery/Detective Authors"
+            }
+        },
+        "Water": {
+            "Set 1": {
+                "clue1": "Under",
+                "clue2": "Sweat",
+                "clue3": "Hawaiian",
+                "clue4": "Muscle",
+                "connection": "Types of Shirts"
+            },
+            "Set 2": {
+                "clue1": "Soprano",
+                "clue2": "Stark",
+                "clue3": "Hawk",
+                "clue4": "Award",
+                "connection": "Tony _____"
+            },
+            "Set 3": {
+                "clue1": "T",
+                "clue2": "Rogers",
+                "clue3": "Bean",
+                "clue4": "Beast",
+                "connection": "Famous Misters"
+            },
+            "Set 4": {
+                "clue1": "Beetlejuice",
+                "clue2": "Tiger",
+                "clue3": "Skunk",
+                "clue4": "Referee",
+                "connection": "Striped Things"
+            }
+        }
+    },
+    "Round 4": {
+        "Set 1": {
+            "1": "Clifford the Big Red Dog",
+            "2": "Cyberchase",
+            "3": "Zoom",
+            "4": "Between the Lions",
+            "connection": "Programs Broadcast on PBS Kids"
+        },
+        "Set 2": {
+            "1": "Individualistic",
+            "2": "Denuclearization",
+            "3": "Autobiographical",
+            "4": "Homosexuality",
+            "connection": "Seven-Syllable Words"
+        },
+        "Set 3": {
+            "1": "Sherlock Holmes and Benedict Cumberbatch",
+            "2": "Jay Gatsby and Leonardo diCaprio",
+            "3": "Vito Corleone and Marlon Brando",
+            "4": "The Terminator and Arnold Schwarzenegger",
+            "connection": "Title Characters and the Actors Who Played Them"
+        },
+        "Set 4": {
+            "1": "East of Eden",
+            "2": "The Pearl",
+            "3": "Of Mice and Men",
+            "4": "The Grapes of Wrath",
+            "connection": "Works by John Steinbeck"
+        }
+    }
+}
