@@ -27,16 +27,6 @@ class Puzzle:
         self.connection: str = parameters["connection"]
         self.clues: List[str] = [values for keys, values in parameters.items() if "clue"  in keys]
 
-class Wall:
-    def __init__(self, parameters: Dict[str, Any]):
-        self.connection: str = parameters["connection"]
-        self.clues: List[str] = [values for keys, values in parameters.items() if "clue" in keys]
-
-class Vowels:
-    def __init__(self, parameters: Dict[str, Any]):
-        self.connection: str = parameters["connection"]
-        self.clues: List[str] = [values for keys, values in parameters.items() if "connection" not in keys]
-
 class Round:
     def __init__(self, questions):
         self.puzzles = {}
