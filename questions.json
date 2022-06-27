@@ -102,6 +102,7 @@
     "Round 3": {
         "Lion": {
             "Set 1": {
+                "type": "regular",
                 "clue1": "Mekong",
                 "clue2": "Ganges",
                 "clue3": "Yangtze",
@@ -109,6 +110,7 @@
                 "connection": "Rivers in Asia & the Middle East"
             },
             "Set 2": {
+                "type": "regular",
                 "clue1": "Wes",
                 "clue2": "Gillian",
                 "clue3": "Louie",
@@ -116,6 +118,7 @@
                 "connection": "Famous Andersons"
             },
             "Set 3": {
+                "type": "regular",
                 "clue1": "Poe",
                 "clue2": "Poul",
                 "clue3": "Indus",
@@ -123,6 +126,7 @@
                 "connection": "___-try"
             },
             "Set 4": {
+                "type": "regular",
                 "clue1": "Chandler",
                 "clue2": "Grifton",
                 "clue3": "Doyle",
@@ -132,6 +136,7 @@
         },
         "Water": {
             "Set 1": {
+                "type": "regular",
                 "clue1": "Under",
                 "clue2": "Sweat",
                 "clue3": "Hawaiian",
@@ -139,6 +144,7 @@
                 "connection": "Types of Shirts"
             },
             "Set 2": {
+                "type": "regular",
                 "clue1": "Soprano",
                 "clue2": "Stark",
                 "clue3": "Hawk",
@@ -146,6 +152,7 @@
                 "connection": "Tony _____"
             },
             "Set 3": {
+                "type": "regular",
                 "clue1": "T",
                 "clue2": "Rogers",
                 "clue3": "Bean",
@@ -153,6 +160,7 @@
                 "connection": "Famous Misters"
             },
             "Set 4": {
+                "type": "regular",
                 "clue1": "Beetlejuice",
                 "clue2": "Tiger",
                 "clue3": "Skunk",
@@ -163,6 +171,7 @@
     },
     "Round 4": {
         "Set 1": {
+            "type": "regular",
             "clue1": "Clifford the Big Red Dog",
             "clue2": "Cyberchase",
             "clue3": "Zoom",
@@ -170,6 +179,7 @@
             "connection": "Programs Broadcast on PBS Kids"
         },
         "Set 2": {
+            "type": "regular",
             "clue1": "Individualistic",
             "clue2": "Denuclearization",
             "clue3": "Autobiographical",
@@ -177,6 +187,7 @@
             "connection": "Seven-Syllable Words"
         },
         "Set 3": {
+            "type": "regular",
             "clue1": "Sherlock Holmes and Benedict Cumberbatch",
             "clue2": "Jay Gatsby and Leonardo diCaprio",
             "clue3": "Vito Corleone and Marlon Brando",
@@ -184,6 +195,7 @@
             "connection": "Title Characters and the Actors Who Played Them"
         },
         "Set 4": {
+            "type": "regular",
             "clue1": "East of Eden",
             "clue2": "The Pearl",
             "clue3": "Of Mice and Men",

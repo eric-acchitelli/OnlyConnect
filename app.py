@@ -14,6 +14,7 @@ gameSession = only_connect.OnlyConnect(sys.argv[1])
 teams = [0] * 2
 teamName = ""
 
+# Collect team names.
 for i in range(2):
     while teamName == "":
         teamName = get_string(f"Team {(i+1)}'s Name: ")
@@ -26,12 +27,14 @@ for i in range(2):
         print(f"{teams[i]}")
         teamName = ""
 
+# Initialize variables.
 currentTeam = random.choice([0,1])
 roundNumber = 1
 puzzleComplete = 0
 puzzleRequest = ""
 coinTossChoice = ""
 
+# Ask the winner of the coin toss whether they would like to go first or second.
 while coinTossChoice not in ["FIRST","SECOND"]:
     coinTossChoice = get_string(f"{teams[currentTeam]['name']}, you won the toss. Would you like to go FIRST or SECOND? ").upper()
     if coinTossChoice != "FIRST":
@@ -40,11 +43,14 @@ while coinTossChoice not in ["FIRST","SECOND"]:
         else:
             currentTeam += 1
 
+#Play the game.
 gameSession.round1.play(teams, currentTeam)
 gameSession.round2.play(teams, currentTeam)
 gameSession.round3.play(teams, currentTeam)
 gameSession.round4.play(teams)
 
+
+#Check the final score.
 if teams[0]['score'] > teams[1]['score']:
     print(f"The winner, with {teams[0]['score']} points, is the {teams[0]['name']}! Coming close behind in second place with {teams[1]['score']} points is the {teams[1]['name']}!")
 elif teams[1]['score'] > teams[0]['score']:
