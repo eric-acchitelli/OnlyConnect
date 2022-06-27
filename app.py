@@ -49,7 +49,7 @@ if teams[0]['score'] > teams[1]['score']:
     print(f"The winner, with {teams[0]['score']} points, is the {teams[0]['name']}! Coming close behind in second place with {teams[1]['score']} points is the {teams[1]['name']}!")
 elif teams[1]['score'] > teams[0]['score']:
     print(f"The winner, with {teams[1]['score']} points, is the {teams[1]['name']}! Coming close behind in second place with {teams[0]['score']} points is the {teams[0]['name']}!")
-elif teams[0]['score'] > teams[1]['score']:
+elif teams[0]['score'] == teams[1]['score']:
     print(f"It's a tie! Both the {teams[0]['name']} and the {teams[1]['name']} have scored {teams[1]['score']} points!")
 
 

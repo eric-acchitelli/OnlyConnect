@@ -25,7 +25,7 @@ class OnlyConnect:
 class Puzzle:
     def __init__(self, parameters: Dict[str, Any]):
         self.connection: str = parameters["connection"]
-        self.clues: List[str] = [values for keys, values in parameters.items() if "clue" in keys]
+        self.clues: List[str] = [values for keys, values in parameters.items() if "clue"  in keys]
 
 class Wall:
     def __init__(self, parameters: Dict[str, Any]):
@@ -268,7 +268,7 @@ class ConnectingWall(Round):
             if not hieroglyph in self.puzzles:
                 self.puzzles[hieroglyph] = {}
             for set_, puzzle in questions[hieroglyph].items():
-                self.puzzles[hieroglyph][set_] = Wall(puzzle)
+                self.puzzles[hieroglyph][set_] = Puzzle(puzzle)
 
 
     def play(self, teams, currentTeam):
@@ -489,7 +489,7 @@ class MissingVowels(Round):
     def __init__(self, questions):
         self.puzzles = {}
         for set, puzzle in questions.items():
-            self.puzzles[set] = Vowels(puzzle)
+            self.puzzles[set] = Puzzle(puzzle)
 
     def play(self, teams):
         puzzleComplete = 0

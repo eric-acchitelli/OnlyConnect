@@ -163,31 +163,31 @@
     },
     "Round 4": {
         "Set 1": {
-            "1": "Clifford the Big Red Dog",
-            "2": "Cyberchase",
-            "3": "Zoom",
-            "4": "Between the Lions",
+            "clue1": "Clifford the Big Red Dog",
+            "clue2": "Cyberchase",
+            "clue3": "Zoom",
+            "clue4": "Between the Lions",
             "connection": "Programs Broadcast on PBS Kids"
         },
         "Set 2": {
-            "1": "Individualistic",
-            "2": "Denuclearization",
-            "3": "Autobiographical",
-            "4": "Homosexuality",
+            "clue1": "Individualistic",
+            "clue2": "Denuclearization",
+            "clue3": "Autobiographical",
+            "clue4": "Homosexuality",
             "connection": "Seven-Syllable Words"
         },
         "Set 3": {
-            "1": "Sherlock Holmes and Benedict Cumberbatch",
-            "2": "Jay Gatsby and Leonardo diCaprio",
-            "3": "Vito Corleone and Marlon Brando",
-            "4": "The Terminator and Arnold Schwarzenegger",
+            "clue1": "Sherlock Holmes and Benedict Cumberbatch",
+            "clue2": "Jay Gatsby and Leonardo diCaprio",
+            "clue3": "Vito Corleone and Marlon Brando",
+            "clue4": "The Terminator and Arnold Schwarzenegger",
             "connection": "Title Characters and the Actors Who Played Them"
         },
         "Set 4": {
-            "1": "East of Eden",
-            "2": "The Pearl",
-            "3": "Of Mice and Men",
-            "4": "The Grapes of Wrath",
+            "clue1": "East of Eden",
+            "clue2": "The Pearl",
+            "clue3": "Of Mice and Men",
+            "clue4": "The Grapes of Wrath",
             "connection": "Works by John Steinbeck"
         }
     }
