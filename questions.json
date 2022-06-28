@@ -10,11 +10,11 @@
         },
         "Twisted Flax": {
             "type": "regular",
-            "clue1": "Well come.",
-            "clue2": "Peepee",
-            "clue3": "This potato sure is hungry",
-            "clue4": "Hey Daddy Poopypants.",
-            "connection": "Text messages you don't want your mother to read."
+            "clue1": "float",
+            "clue2": "char",
+            "clue3": "int",
+            "clue4": "void",
+            "connection": "Data Types in C"
         },
         "Lion": {
             "type": "regular",
@@ -201,6 +201,13 @@
             "clue3": "Of Mice and Men",
             "clue4": "The Grapes of Wrath",
             "connection": "Works by John Steinbeck"
+        }
+    },
+    "Tiebreaker": {
+        "Tiebreaker": {
+            "type": "regular",
+            "clue1": "You win some, you lose some",
+            "connection": "Tiebreaker"
         }
     }
 }
