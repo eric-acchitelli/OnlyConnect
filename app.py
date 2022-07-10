@@ -1,8 +1,15 @@
-from flask import Flask, render_template, redirect, request, send_file
+from flask import Flask, render_template, redirect, request, send_file, session
 import random, only_connect, html, json
 from OnlyConnect import vowelsPuzzle
+from flask_session import Session
 
 app = Flask(__name__)
+app.secret_key = "VictoriaCoren-Mitchell"
+
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 # Initialize global variables.
 teams = [0] * 2
@@ -18,6 +25,7 @@ def load():
     if request.method == "POST":
         file = request.form.get("filename")
         if file.endswith('.json'):
+            session['gameFileName'] = file
             global gameSession
             gameSession = only_connect.OnlyConnect(file)
             return render_template("select_teams.html")
