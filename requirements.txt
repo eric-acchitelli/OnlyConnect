@@ -1,3 +1,4 @@
+cs50
 Flask
 gunicorn
 psycopg2
