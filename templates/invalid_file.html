@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="center col-auto">
+    <h1 class="center">Invalid file type. File must be of type .json. Please submit another file.</h1>
+</div>
+<form class="align-items-center" action="/load_game" method="POST">
+    <input type="file" id="filename" name="filename">
+    <input type="submit" methods="POST">
+</form>
+
+{% endblock %}

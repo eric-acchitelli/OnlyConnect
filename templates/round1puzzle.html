@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+
+{% block script %}
+
+<script>
+    let points = 5, seconds = 45, clueCounter = 1, scoringTeam = parseInt("{{currentTeam}}"), teams = JSON.parse('{{teams | tojson}}');
+    var timerCountdown;
+    document.addEventListener("DOMContentLoaded", function() {
+        let startButton = document.querySelector('#start');
+        let stopButton = document.querySelector('#stop');
+        let nextButton = document.querySelector('#next');
+        let solvedButton = document.querySelector('#solved');
+        let incorrectButton = document.querySelector('#incorrect');
+        let returnButton = document.querySelector('#round1')
+
+        startButton.addEventListener('click', function() {
+            timerCountdown = setInterval(changeTimer, 1000);
+            startButton.disabled = true;
+            document.querySelector('#clue1').innerHTML = "{{puzzle.clues[0]}}";
+            document.querySelector('#pointsIndicator').innerHTML = "Points: " + points;
+        });
+
+
+        stopButton.addEventListener('click', function() {
+            clearInterval(timerCountdown);
+            stopButton.disabled = true;
+            nextButton.disabled = true;
+            solvedButton.disabled = false;
+            incorrectButton.disabled = false;
+        });
+
+
+        nextButton.addEventListener('click', function() {
+            if (clueCounter == 1) {
+                document.querySelector('#clue2').innerHTML = "{{puzzle.clues[1]}}";
+                points = 3;
+            } else if (clueCounter == 2) {
+                document.querySelector('#clue3').innerHTML = "{{puzzle.clues[2]}}";
+                points = 2;
+            } else if (clueCounter == 3) {
+                document.querySelector('#clue4').innerHTML = "{{puzzle.clues[3]}}";
+                points = 1;
+                nextButton.disabled = true;
+            };
+            clueCounter += 1;
+            document.querySelector('#pointsIndicator').innerHTML = "Points: " + points;
+        });
+
+
+        solvedButton.addEventListener('click', function() {
+            clearInterval(timerCountdown)
+            if (clueCounter == 1) {
+                document.querySelector('#clue2').innerHTML = "{{puzzle.clues[1]}}";
+                document.querySelector('#clue3').innerHTML = "{{puzzle.clues[2]}}";
+                document.querySelector('#clue4').innerHTML = "{{puzzle.clues[3]}}";
+                document.querySelector('#connection').innerHTML = "{{puzzle.connection}}";
+            } else if (clueCounter == 2) {
+                document.querySelector('#clue3').innerHTML = "{{puzzle.clues[2]}}";
+                document.querySelector('#clue4').innerHTML = "{{puzzle.clues[3]}}";
+                document.querySelector('#connection').innerHTML = "{{puzzle.connection}}";
+            } else if (clueCounter == 3) {
+                document.querySelector('#clue4').innerHTML = "{{puzzle.clues[3]}}";
+                document.querySelector('#connection').innerHTML = "{{puzzle.connection}}";
+            } else if (clueCounter == 4) {
+                document.querySelector('#connection').innerHTML = "{{puzzle.connection}}";
+            };
+            solvedButton.disabled = true;
+            incorrectButton.disabled = true;
+            returnButton.disabled = false;
+            document.querySelector('#scoringTeam').value = scoringTeam;
+            document.querySelector('#points').value = points;
+        });
+
+
+        incorrectButton.addEventListener('click', function() {
+            if (scoringTeam == "{{currentTeam}}") {
+                if (clueCounter == 1) {
+                    document.querySelector('#clue2').innerHTML = "{{puzzle.clues[1]}}";
+                    document.querySelector('#clue3').innerHTML = "{{puzzle.clues[2]}}";
+                    document.querySelector('#clue4').innerHTML = "{{puzzle.clues[3]}}";
+                } else if (clueCounter == 2) {
+                    document.querySelector('#clue3').innerHTML = "{{puzzle.clues[2]}}";
+                    document.querySelector('#clue4').innerHTML = "{{puzzle.clues[3]}}";
+                } else if (clueCounter == 3) {
+                    document.querySelector('#clue4').innerHTML = "{{puzzle.clues[3]}}";
+                };
+                points = 1
+                if (scoringTeam == 1) {
+                    scoringTeam -= 1;
+                } else {
+                    scoringTeam += 1;
+                };
+                document.querySelector('#solving').innerHTML = "<h5>" + teams[scoringTeam].name + " have a chance to steal.</h5>"
+                incorrectButton.innerHTML = "Incorrect Answer: Reveal Answer"
+            } else {
+                document.querySelector('#connection').innerHTML = "{{puzzle.connection}}";
+                points = 0;
+                document.querySelector('#scoringTeam').value = scoringTeam;
+                document.querySelector('#points').value = points;
+                document.querySelector('#solving').innerHTML = "<h5>Neither team solved the puzzle. No points are awarded.</h5>"
+                solvedButton.disabled = true;
+                incorrectButton.disabled = true;
+                returnButton.disabled = false;
+            };
+            document.querySelector('#pointsIndicator').innerHTML = "Points: " + points;
+        });
+
+
+        function changeTimer() {
+            seconds -= 1;
+            document.querySelector('#timer').innerHTML = seconds;
+            if (seconds == 0) {
+                clearInterval(timerCountdown);
+                stopButton.disabled = true;
+                nextButton.disabled = true;
+                solvedButton.disabled = false;
+                incorrectButton.disabled = false;
+                incorrectButton.click()
+            };
+        }
+    });
+</script>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row text-center"><h1>Round 1: What's the Connection?</h1></div>
+    <div class="row text-center" id="solving"><h5>{{ teams[currentTeam]["name"] }} are currently solving.</h5></div>
+    <div class="row">
+        <div class="col text-start" id="pointsIndicator">Points: 5</div>
+        <div class="col text-end" id="timer">45</div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row hieroglyph center">{{ hieroglyph }}</div>
+    <div class="puzzle-container">
+        <div class="puzzle-item" id="clue1"></div>
+        <div class="puzzle-item" id="clue2"></div>
+        <div class="puzzle-item" id="clue3"></div>
+        <div class="puzzle-item" id="clue4"></div>
+        <div class="connection" id="connection"></div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" id="start">Start Timer</button></div>
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" id="next">Show Next Clue</button></div>
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" id="stop">Stop Timer</button></div>
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" disabled id="solved">Puzzle Solved: Reveal Answer</button></div>
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" disabled id="incorrect">Incorrect Answer: Reveal Remaining Clues</button></div>
+    </div>
+</div>
+
+<div class="container">
+    <form class="align-items-center" action="/round1inprogress" method="POST">
+        <input type="hidden" id="points" name="points" value="">
+        <input type="hidden" id="scoringTeam" name="scoringTeam" value="">
+        <button type="submit" class="btn btn-primary btn-lg" disabled id="round1">Return to Round Hub</button>
+    </form>
+
+</div>
+
+{% endblock %}

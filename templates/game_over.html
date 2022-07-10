@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="center">
+    <h1 class="center">With {{ teams[winningTeam]["score"] }} points, the winning team is the {{ teams[winningTeam]["name"] }}!</h1>
+</div>
+<div>
+    <h3 class="center">Coming in second place with {{ teams[losingTeam]["score"] }} points is the {{ teams[losingTeam]["name"] }}!</h3>
+</div>
+
+<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/openingTitlesWithFlurry.mp3') }}" type="audio/mpeg"></audio>
+
+{% endblock %}

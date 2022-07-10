@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="center col-auto">
+    <h1 class="center">Game file successfully loaded! Please select your team names now.</h1>
+</div>
+<br>
+<form class="align-items-center center" action="/coin_toss" method="POST">
+    <label for="team1">Team 1:</label>
+    <input type="text" autofocus autocomplete="off" id="team1" name="team1" placeholder="Time Ladies" required>
+    <label for="team1">Team 2:</label>
+    <input type="text" autocomplete="off" id="team2" name="team2" placeholder="Escapologists" required>
+    <input type="submit" methods="POST">
+</form>
+
+{% endblock %}

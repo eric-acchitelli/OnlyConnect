@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="center row-auto">
+    <h1 class="center">Welcome to the Only Connect Host Assistant!</h1>
+</div>
+<h3 class="center" style="padding:20px">Know what you're doing? Upload your question file and get started here!</h3>
+
+<form class="col-auto center" action="/load_game" method="POST">
+    <input type="file" id="filename" name="filename">
+    <input type="submit">
+</form>
+<br>
+
+<div style="padding:30px">
+    <h3 class="center">What is Only Connect?</h3>
+    <p>
+        Introduced to the world by the British Broadcasting Corporation in 2008, Only Connect is often cited as one of television's hardest quiz shows.
+        Host Victoria Coren-Mitchell pits two teams of three against each other in a tournament-style competition of finding the connection between
+        seemingly unrelated clues, forcing contestants to use lateral thinking and patience to find the answers that will get them the points they
+        need to win the game.
+    </p>
+    <p>
+        The game is divided into four rounds:
+    </p>
+    <ol>
+        <li>
+            Teams must find the connection between four seemingly random clues. The less clues teams see before finding the connection, the more points
+            they will get for solving the puzzle. If the team provides an incorrect answer or fails to buzz in before the time is up, the other team
+            has a chance to steal the puzzle and receive a point.
+        </li>
+        <li>
+            Each set of four clues in this round makes up a sequence. The teams are only allowed to see a maximum of three clues, and must provide what
+            they would expect to see in the fourth clue as their solution. Again, the less clues teams see before providing the solution, the more
+            points that they will get for solving the puzzle. If the team provides an incorrect answer or fails to buzz in before the time is up, the
+            other team has a chance to steal the puzzle and receive a point.
+        </li>
+        <li>
+            The connecting wall, which consists of 16 randomized clues. These clues can be grouped into four groups of four clues such that each clue
+            is used exactly once, and teams are given a 2 minute and 30 second time limit to group them all into the four distinct groups, earning a point
+            for each correct group successfully formed. After the clues are grouped, teams then must provide the connection for each set of clues, earning
+            a point for each correct connection provided. If all the groups and connections are found, the team receives a two point bonus for a maximum
+            of 10 points able to be earned in this round.
+        </li>
+        <li>
+            The missing vowels round provides teams with an overarching category and an answer that falls under that category. However, the answer
+            provided has had all vowels from the solution removed and the spacing rearranged. The teams are actively competing against each other in
+            this round and must buzz in when they know the answer. If they are correct, they receive a point; however, if they are incorrect, even by
+            one letter, they actually lose a point and give the opposing team the chance to steal and gain a point.
+        </li>
+    </ol>
+    <p>
+        At the end of four rounds, the team with the most points is the winner! If there is a tie, a tiebreaker missing vowels puzzle is played with
+        the captains of each team where a correct answer wins the game and an incorrect answer loses the game.
+    </p>
+    <p>
+        Think that the show sounds interesting to you? Give it a watch below!
+    </p>
+    <iframe class="center" width="560" height="315" src="https://www.youtube.com/embed/_qikOUxZSeY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+    <h3 class="center">What is the Only Connect Host Assistant?</h3>
+    <p>
+        If you've seen an episode of <em>Only Connect</em> and thought "Hey, I can totally be Victoria Coren-Mitchell!", the Only
+        Connect Host Assistant is for you! Simply download <a href="/template">this template</a> and insert your clues and
+        connections inside the empty double quotes. Once you've completely filled out the template, save it under a new name and
+        upload that new file at the top of this page; if successful, you will be able to start choosing team names and running
+        the game!
+    </p>
+    <p><em>
+        Note: The Only Connect Host Assistant has been modified slightly from the traditional Only Connect game in some ways, including:
+        <ul>
+            <li>
+                The application is only able to accept regular text based clues at this time. Picture and music clues will
+                (hopefully) be coming at a later time. The field "type" is included in the question template to allow for
+                future functionality.
+            </li>
+            <li>
+                The time limits of the traditional rounds of Only Connect have been modified slightly.
+                <ul>
+                    <li>
+                        In rounds 1 and 2, teams are given 45 seconds instead of 40 seconds to answer the questions.
+                    </li>
+                    <li>
+                        In round 3, teams are given 180 seconds instead of 150 seconds to solve the Connecting Wall.
+                    </li>
+                    <li>
+                        In round 4, no time limit for the round or each question is enforced by the application. The host
+                        is tasked with providing four missing vowel round categories with four clues in each (a total of 16
+                        puzzles) for the duration of the round. Each question does not have a strict time limit, but the host
+                        may at their own discretion reveal the answer of the puzzle and skip to the next one without causing
+                        any point changes as in the show.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </em></p>
+</div>
+
+{% endblock %}

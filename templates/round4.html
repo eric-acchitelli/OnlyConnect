@@ -1,0 +1,212 @@
+{% extends "layout.html" %}
+
+{% block script %}
+
+<script>
+    let points = 5, seconds = 45, clueCounter = 0, setCounter = 0, team0VowelPoints = 0, team1VowelPoints = 0, teams = JSON.parse('{{teams | tojson}}'),
+        clues = JSON.parse('{{clues | tojson}}'), connections = JSON.parse('{{connections | tojson}}'), answers = JSON.parse('{{answers | tojson}}');
+    document.addEventListener("DOMContentLoaded", function() {
+        let clueButton = document.querySelector('#clue');
+        let connectionButton = document.querySelector('#connectionButton')
+        let team0correctButton = document.querySelector('#team0correct');
+        let team1correctButton = document.querySelector('#team1correct');
+        let team0incorrectButton = document.querySelector('#team0incorrect');
+        let team1incorrectButton = document.querySelector('#team1incorrect');
+        let returnButton = document.querySelector('#final')
+
+
+        connectionButton.addEventListener('click', function() {
+            connectionButton.disabled = true;
+            clueButton.innerHTML = "Show Next Clue";
+            clueButton.disabled = false;
+            document.querySelector('#clue1').innerHTML = ""
+            document.querySelector('#connection').innerHTML = connections[setCounter];
+        });
+
+
+        clueButton.addEventListener('click', function() {
+            if (clueButton.innerHTML != "Reveal Answer") {
+                document.querySelector('#clue1').innerHTML = clues[setCounter][clueCounter];
+                clueButton.innerHTML = "Reveal Answer";
+                team0correctButton.disabled = false;
+                team1correctButton.disabled = false;
+                team0incorrectButton.disabled = false;
+                team1incorrectButton.disabled = false;
+            } else {
+                clueButton.innerHTML = "Show Next Clue";
+                document.querySelector('#clue1').innerHTML = answers[setCounter][clueCounter];
+                team0correctButton.disabled = true;
+                team1correctButton.disabled = true;
+                team0incorrectButton.disabled = true;
+                team1incorrectButton.disabled = true;
+                if (clueCounter != (clues.length - 1)) {
+                    clueCounter++;
+                } else if (setCounter != (connections.length - 1)) {
+                    clueButton.disabled = true;
+                    connectionButton.disabled = false;
+                    clueCounter = 0;
+                    setCounter++;
+                } else {
+                    clueButton.disabled = true;
+                    returnButton.disabled = false;
+                    document.querySelector('#team0points').value = team0VowelPoints;
+                    document.querySelector('#team1points').value = team1VowelPoints;
+                    document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/ocFlurry.mp3') }}" type="audio/mpeg"></audio>`
+                };
+            };
+        });
+
+        team0correctButton.addEventListener('click', function() {
+            document.querySelector('#clue1').innerHTML = answers[setCounter][clueCounter];
+            team0VowelPoints += 1
+            team0correctButton.disabled = true;
+            team1correctButton.disabled = true;
+            team0incorrectButton.disabled = true;
+            team1incorrectButton.disabled = true;
+            if (clueCounter != (clues.length - 1)) {
+                clueButton.innerHTML = "Show Next Clue";
+                clueButton.disabled = false;
+                clueCounter++;
+            } else if (setCounter != (connections.length - 1)) {
+                connectionButton.disabled = false;
+                clueButton.disabled = true;
+                clueCounter = 0;
+                setCounter++;
+            } else {
+                returnButton.disabled = false;
+                clueButton.disabled = true;
+                document.querySelector('#team0points').value = team0VowelPoints;
+                document.querySelector('#team1points').value = team1VowelPoints;
+                document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/ocFlurry.mp3') }}" type="audio/mpeg"></audio>`
+            };
+        });
+
+        team1correctButton.addEventListener('click', function() {
+            document.querySelector('#clue1').innerHTML = answers[setCounter][clueCounter];
+            team1VowelPoints += 1
+            team0correctButton.disabled = true;
+            team1correctButton.disabled = true;
+            team0incorrectButton.disabled = true;
+            team1incorrectButton.disabled = true;
+            if (clueCounter != (clues.length - 1)) {
+                clueButton.innerHTML = "Show Next Clue";
+                clueButton.disabled = false;
+                clueCounter++;
+            } else if (setCounter != (connections.length - 1)) {
+                connectionButton.disabled = false;
+                clueButton.disabled = true;
+                clueCounter = 0;
+                setCounter++;
+            } else {
+                returnButton.disabled = false;
+                clueButton.disabled = true;
+                document.querySelector('#team0points').value = team0VowelPoints;
+                document.querySelector('#team1points').value = team1VowelPoints;
+                document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/ocFlurry.mp3') }}" type="audio/mpeg"></audio>`
+            };
+        });
+
+        team0incorrectButton.addEventListener('click', function() {
+            if (team1correctButton.disabled == false) {
+                team0VowelPoints -= 1
+                clueButton.disabled = true;
+            } else {
+                document.querySelector('#clue1').innerHTML = answers[setCounter][clueCounter];
+                if (clueCounter != 3) {
+                    clueButton.innerHTML = "Show Next Clue"
+                    clueButton.disabled = false;
+                    clueCounter++;
+                } else if (setCounter != 3) {
+                    connectionButton.disabled = false;
+                    clueCounter = 0
+                    setCounter++;
+                } else {
+                    returnButton.disabled = false;
+                    clueButton.disabled = true;
+                    document.querySelector('#team0points').value = team0VowelPoints;
+                    document.querySelector('#team1points').value = team1VowelPoints;
+                    document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/ocFlurry.mp3') }}" type="audio/mpeg"></audio>`
+                };
+            };
+            team0correctButton.disabled = true;
+            team0incorrectButton.disabled = true;
+            if (connections.length == 1) {
+                team1correctButton.disabled = true;
+                team1incorrectButton.disabled = true;
+                document.querySelector('#clue1').innerHTML = answers[setCounter][clueCounter];
+            }
+        });
+
+        team1incorrectButton.addEventListener('click', function() {
+            if (team0correctButton.disabled == false) {
+                team1VowelPoints -= 1
+                clueButton.disabled = true;
+            } else {
+                document.querySelector('#clue1').innerHTML = answers[setCounter][clueCounter];
+                if (clueCounter != 3) {
+                    clueButton.innerHTML = "Show Next Clue"
+                    clueButton.disabled = false;
+                    clueCounter++;
+                } else if (setCounter != 3) {
+                    connectionButton.disabled = false;
+                    clueCounter = 0
+                    setCounter++;
+                } else {
+                    returnButton.disabled = false;
+                    clueButton.disabled = true;
+                    document.querySelector('#team0points').value = team0VowelPoints;
+                    document.querySelector('#team1points').value = team1VowelPoints;
+                    document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/ocFlurry.mp3') }}" type="audio/mpeg"></audio>`
+                };
+            };
+            team1correctButton.disabled = true;
+            team1incorrectButton.disabled = true;
+        });
+    });
+</script>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row text-center"><h1>Round 4: The Missing Vowels Round</h1></div>
+    <div class="row">
+        <div class="col text-center" id="team0score"><h3>{{ teams[0]["name"] }}: {{teams[0]["score"] }}</h3></div>
+        <div class="col text-center" id="team1score"><h3>{{ teams[1]["name"] }}: {{teams[1]["score"] }}</h3></div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="vowel-container">
+        <div class="connection" style="grid-area: auto" id="connection"></div>
+        <div class="puzzle-item" id="clue1"></div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="vowel-button-container center">
+        <div class="col text-center"><button type="button" class="btn vowel-button" disabled id="team0correct">{{ teams[0]["name"] }} correct</button></div>
+        <div class="col text-center"><button type="button" class="btn vowel-button" id="connectionButton">Show Next Connection</button></div>
+        <div class="col text-center"><button type="button" class="btn vowel-button" disabled id="team1correct">{{ teams[1]["name"] }} correct</button></div>
+        <div class="col text-center"><button type="button" class="btn vowel-button" disabled id="team0incorrect">{{ teams[0]["name"] }} incorrect</button></div>
+        <div class="col text-center"><button type="button" class="btn vowel-button" disabled id="clue">Show Next Clue</button></div>
+        <div class="col text-center"><button type="button" class="btn vowel-button" disabled id="team1incorrect">{{ teams[1]["name"] }} incorrect</button></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col text-center"><button type="button" class="btn" style="visibility: hidden">Tiebreaker Question</button></div>
+    <form class="align-items-center" action="/endgame" method="POST">
+        <input type="hidden" id="team0points" name="team0points" value="">
+        <input type="hidden" id="team1points" name="team1points" value="">
+        <button type="submit" class="btn btn-primary btn-lg center" disabled id="final">And the winner is...</button>
+    </form>
+</div>
+
+<div id="music"></div>
+
+{% endblock %}

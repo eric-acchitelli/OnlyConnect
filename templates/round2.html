@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+
+{% block script %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        questionsPlayed = JSON.parse('{{ questionsPlayed | tojson }}');
+        if (questionsPlayed.length > 0) {
+            for (let i = 0; i < questionsPlayed.length; i++) {
+                disableButtons(questionsPlayed[i]);
+            }
+        } else {
+            document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/ocFlurry.mp3') }}" type="audio/mpeg"></audio>`
+        };
+
+        if (questionsPlayed.length >= 6) {
+            document.querySelector('#round3').style.visibility = "visible";
+        }
+
+
+        function disableButtons(question) {
+            element = document.getElementById(question);
+            element.classList.add("disabled");
+        }
+    });
+</script>
+
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container">
+    <div class="row text-center"><h1>Round 2: What Comes Fourth in the Sequence?</h1></div>
+    <div class="row">
+        <div class="col text-center"><h3>{{ teams[0]["name"] }}: {{teams[0]["score"] }}</h3></div>
+        <div class="col text-center"><h3>{{ teams[1]["name"] }}: {{teams[1]["score"] }}</h3></div>
+    </div>
+    <div class="row text-center"><h5>{{ teams[currentTeam]["name"] }}, please choose a hieroglyph.</h5></div>
+</div>
+
+
+<div class="container">
+    <div class="puzzle-button-container center">
+        <div class="col text-center"><a class="btn btn-primary btn-lg center" style="display:flex" href="round2tworeeds" id="TwoReeds">&#78284;</a></div>
+        <div class="col text-center"><a class="btn btn-primary btn-lg center" style="display:flex" href="round2lion" id="Lion">&#78061;</a></div>
+        <div class="col text-center"><a class="btn btn-primary btn-lg center" style="display:flex" href="round2twistedflax" id="TwistedFlax">&#78747;</a></div>
+        <div class="col text-center"><a class="btn btn-primary btn-lg center" style="display:flex" href="round2hornedviper" id="HornedViper">&#78225;</a></div>
+        <div class="col text-center"><a class="btn btn-primary btn-lg center" style="display:flex" href="round2water" id="Water">&#78359;</a></div>
+        <div class="col text-center"><a class="btn btn-primary btn-lg center" style="display:flex" href="round2eyeofhorus" id="EyeOfHorus">&#77952;</a></div>
+        <a class="btn btn-primary btn-lg proceed-button" href="round3" style="visibility: hidden; grid-area" id="round3">Proceed to the Connecting Wall</a>
+    </div>
+</div>
+
+<div id="music"></div>
+
+{% endblock %}

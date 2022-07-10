@@ -1,0 +1,122 @@
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.hieroglyph {
+    font-size: 72px;
+    font-weight: bold;
+}
+
+a.disabled {
+    pointer-events: none;
+    color: #ccc;
+}
+
+/* Code adapted from https://www.w3schools.com/css/css_grid.asp */
+.puzzle-button-container {
+    display: grid;
+    grid-template-columns: 125px 125px 125px;
+    grid-template-rows: 50px 50px 50px;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+.proceed-button {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    display: flex;
+    padding: 10px;
+    font-size: 20px;
+    grid-area: 3 / 1 / span 1 / span 3;
+    justify-content: center;
+    text-align: center;
+    background-color: #1C477D;
+    color: #FFFFFF;
+}
+
+/* Code adapted from https://www.w3schools.com/css/css_grid.asp */
+.puzzle-container {
+    display: grid;
+    grid-template-columns: 319px 319px 319px 319px;
+    grid-template-rows: 125px 75px;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+/* Code adapted from https://www.w3schools.com/css/css_grid.asp */
+.wall-container {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-rows: 125px 125px 125px 125px;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+/* Code adapted from https://www.w3schools.com/css/css_grid.asp */
+.puzzle-item {
+    align-items: center;
+    background-color: #CBE0F4;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    color: #1C477D;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Code adapted from https://www.w3schools.com/css/css_grid.asp */
+.vowel-container {
+    display: grid;
+    grid-template-rows: 75px 75px;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+/* Code adapted from https://www.w3schools.com/css/css_grid.asp */
+.vowel-button-container {
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+    grid-template-rows: 75px 75px;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+.vowel-button {
+    align-items: center;
+    color: #1C477D;
+    height: 100%;
+    font-size: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Code adapted from https://www.w3schools.com/css/css_grid.asp */
+.connection {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    display: flex;
+    padding: 10px;
+    font-size: 20px;
+    grid-area: 2 / 1 / span 1 / span 4;
+    justify-content: center;
+    text-align: center;
+    background-color: #1C477D;
+    color: #FFFFFF;
+}
+
+.clue-button {
+    align-items: center;
+    color: #1C477D;
+    height: 100%;
+    font-size: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+h1 {
+    color: #1C477D;
+}

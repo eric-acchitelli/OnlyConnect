@@ -1,0 +1,213 @@
+{
+    "Round 1": {
+        "Two Reeds": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Twisted Flax": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Lion": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Horned Viper": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Water": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Eye of Horus": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        }
+    },
+    "Round 2": {
+        "Two Reeds": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Twisted Flax": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Lion": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Horned Viper": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Water": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Eye of Horus": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        }
+    },
+    "Round 3": {
+        "Lion": {
+            "Set 1": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            },
+            "Set 2": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            },
+            "Set 3": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            },
+            "Set 4": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            }
+        },
+        "Water": {
+            "Set 1": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            },
+            "Set 2": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            },
+            "Set 3": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            },
+            "Set 4": {
+                "type": "regular",
+                "clue1": "",
+                "clue2": "",
+                "clue3": "",
+                "clue4": "",
+                "connection": ""
+            }
+        }
+    },
+    "Round 4": {
+        "Set 1": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Set 2": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Set 3": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        },
+        "Set 4": {
+            "type": "regular",
+            "clue1": "",
+            "clue2": "",
+            "clue3": "",
+            "clue4": "",
+            "connection": ""
+        }
+    },
+    "Tiebreaker": {
+        "Tiebreaker": {
+            "type": "regular",
+            "clue1": "",
+            "connection": ""
+        }
+    }
+}

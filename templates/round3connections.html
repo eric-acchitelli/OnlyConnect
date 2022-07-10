@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+
+{% block script %}
+
+<script>
+    let points = parseInt("{{wallPoints}}"), setCounter = 0, scoringTeam = parseInt("{{currentTeam}}"),
+        teams = JSON.parse('{{teams | tojson}}'), setOrder = JSON.parse('{{setOrder | tojson}}'), solution = "";
+    document.addEventListener("DOMContentLoaded", function() {
+        let nextButton = document.querySelector('#next');
+        let solvedButton = document.querySelector('#solved');
+        let incorrectButton = document.querySelector('#incorrect');
+        let returnButton = document.querySelector('#round3');
+        let clueItems = document.querySelectorAll('.puzzle-item')
+        let connectionField = document.querySelector('#connection')
+        let set1 = JSON.parse('{{set1 | tojson}}');
+        let set2 = JSON.parse('{{set2 | tojson}}');
+        let set3 = JSON.parse('{{set3 | tojson}}');
+        let set4 = JSON.parse('{{set4 | tojson}}');
+        let sets = [set1, set2, set3, set4];
+        let colors = ["#0E4071", "#3C8C72", "#63173F", "#368592"];
+        initializePuzzle(setOrder[setCounter]);
+        setCounter++;
+        document.querySelector('#pointsIndicator').innerHTML = "Total Points: " + points;
+
+
+        nextButton.addEventListener('click', function() {
+            initializePuzzle(setOrder[setCounter]);
+            setCounter++;
+            solvedButton.disabled = false;
+            incorrectButton.disabled = false;
+            nextButton.disabled = true;
+        });
+
+        solvedButton.addEventListener('click', function() {
+            points++;
+            connectionField.innerHTML = solution;
+            document.querySelector('#pointsIndicator').innerHTML = "Total Points: " + points;
+            solvedButton.disabled = true;
+            incorrectButton.disabled = true;
+            if (points == 8) {
+                points = 10;
+                document.querySelector('#pointsIndicator').innerHTML = "Total Points: " + points;
+            }
+            if (setCounter != 4) {
+                nextButton.disabled = false;
+            } else {
+                returnButton.disabled = false;
+                if (points == 10) {
+                    document.querySelector('#solving').innerHTML = "<h5>You found all four of the groups and gave me all four of the connections, so you've earned a bonus 2 points, giving you 10 points for the Connecting Wall.</h5>";
+                } else {
+                    document.querySelector('#solving').innerHTML = "<h5>You found {{wallPoints}} groups and gave me a total of " + (points - parseInt('{{wallPoints}}')) + " connections, earning you a total of " + points + " points.</h5>";
+
+                }
+                document.querySelector('#scoringTeam').value = scoringTeam;
+                document.querySelector('#points').value = points;
+            };
+        });
+
+        incorrectButton.addEventListener('click', function() {
+            connectionField.innerHTML = solution;
+            document.querySelector('#pointsIndicator').innerHTML = "Total Points: " + points;
+            solvedButton.disabled = true;
+            incorrectButton.disabled = true;
+            if (setCounter != 4) {
+                nextButton.disabled = false;
+            } else {
+                returnButton.disabled = false;
+                document.querySelector('#solving').innerHTML = "<h5>You found {{wallPoints}} groups and gave me a total of " + (points - parseInt('{{wallPoints}}')) + " connections, earning you a total of " + points + " points.</h5>";
+                document.querySelector('#scoringTeam').value = scoringTeam;
+                document.querySelector('#points').value = points;
+            };
+        })
+
+        returnButton.addEventListener
+
+        function initializePuzzle(set) {
+            if (set == "Set 1") {
+                for (let i = 0; i < 4; i++) {
+                    clueItems[i].innerHTML = set1.clues[i];
+                }
+                solution = set1.connection;
+            } else if (set == "Set 2") {
+                for (let i = 0; i < 4; i++) {
+                    clueItems[i].innerHTML = set2.clues[i];
+                }
+                solution = set2.connection;
+            } else if (set == "Set 3") {
+                for (let i = 0; i < 4; i++) {
+                    clueItems[i].innerHTML = set3.clues[i];
+                }
+                solution = set3.connection;
+            } else if (set == "Set 4") {
+                for (let i = 0; i < 4; i++) {
+                    clueItems[i].innerHTML = set4.clues[i];
+                }
+                solution = set4.connection;
+            };
+            for (let i = 0; i < 4; i++) {
+                clueItems[i].style.backgroundColor = colors[setCounter];
+                clueItems[i].style.color = "white";
+            }
+            connectionField.innerHTML = "";
+        }
+    });
+</script>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row text-center"><h1>Round 3: The Connecting Wall's Connections</h1></div>
+    <div class="row text-center" id="solving"><h5>{{ teams[currentTeam]["name"] }} are currently solving.</h5></div>
+    <div class="row">
+        <div class="col text-start" id="pointsIndicator">Total Points: {{ wallPoints }}</div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row hieroglyph center">{{ hieroglyph }}</div>
+    <div class="puzzle-container">
+        <div class="puzzle-item" id="clue1"></div>
+        <div class="puzzle-item" id="clue2"></div>
+        <div class="puzzle-item" id="clue3"></div>
+        <div class="puzzle-item" id="clue4"></div>
+        <div class="connection" id="connection"></div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" disabled id="next">Next Set</button></div>
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" id="solved">Puzzle Solved: Reveal Answer</button></div>
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" id="incorrect">Incorrect Answer: Reveal Answer</button></div>
+    </div>
+</div>
+
+<div class="container">
+    <form class="center" action="/round3inprogress" method="POST">
+        <input type="hidden" id="points" name="points" value="">
+        <input type="hidden" id="scoringTeam" name="scoringTeam" value="">
+        <button type="submit" class="btn btn-primary btn-lg" disabled id="round3">Return to Round Hub</button>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="center col-auto">
+    <h1 class="center">{{ coinTossWinner["name"] }}, you won the coin toss. Would you like to go first or second?</h1>
+</div>
+<br>
+<form class="align-items-center center" action="/round1" method="POST">
+    <select id="choice" name="choice">
+        <option value="first">First</option>
+        <option value="second">Second</option>
+    </select>
+    <input type="submit" methods="POST">
+</form>
+
+{% endblock %}

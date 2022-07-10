@@ -1,0 +1,247 @@
+{% extends "layout.html" %}
+
+{% block script %}
+
+<script>
+    let points = 0, seconds = 180, clueCounter = 1, lives = 3, scoringTeam = parseInt("{{currentTeam}}"),
+        teams = JSON.parse('{{teams | tojson}}'), connectingWall = JSON.parse('{{connectingWall | tojson}}'),
+        puzzle='{{puzzle}}';
+    var timerCountdown;
+    document.addEventListener("DOMContentLoaded", function() {
+        let startButton = document.querySelector('#start');
+        let returnButton = document.querySelector('#round3');
+        let clueButtons = document.querySelectorAll('.clue-button');
+        let set1 = JSON.parse('{{set1 | tojson}}');
+        let set2 = JSON.parse('{{set2 | tojson}}');
+        let set3 = JSON.parse('{{set3 | tojson}}');
+        let set4 = JSON.parse('{{set4 | tojson}}');
+        let sets = [set1, set2, set3, set4];
+        let tempSet = [], correctSets = [];
+        let colors = ["#0E4071", "#3C8C72", "#63173F", "#368592"];
+        let setCounter = 0;
+        let checkSet1 = false, checkSet2 = false, checkSet3 = false, checkSet4 = false;
+
+        startButton.addEventListener('click', function() {
+            timerCountdown = setInterval(changeTimer, 1000); //<-- move to last
+            startButton.disabled = true;
+            startButton.style.visibility = "hidden";
+            for (let i = 0; i < 16; i++) {
+                clueButtons[i].value = connectingWall[i];
+                clueButtons[i].innerHTML = connectingWall[i];
+                for (let j = 0; j < 4; j++) {
+                    if (sets[j].clues.includes(connectingWall[i]) == true) {
+                        if (j == 0) {
+                            clueButtons[i].classList.add("set1");
+                            break;
+                        } else if (j == 1) {
+                            clueButtons[i].classList.add("set2");
+                            break;
+                        } else if (j == 2) {
+                            clueButtons[i].classList.add("set3");
+                            break;
+                        } else if (j == 3) {
+                            clueButtons[i].classList.add("set4");
+                            break;
+                        };
+                    };
+                };
+            };
+        });
+
+        for (let i = 0; i < 16; i++) {
+            clueButtons[i].addEventListener('click', function() {
+                if (tempSet.includes(clueButtons[i]) == false) {
+                    tempSet.push(clueButtons[i]);
+                    clueButtons[i].style.backgroundColor = colors[setCounter];
+                    clueButtons[i].style.color = "white";
+                } else {
+                    for (var j = tempSet.length; j > -1; j--) {
+                        if (tempSet[j] == clueButtons[i]) {
+                            clueButtons[i].style.backgroundColor = "#CBE0F4";
+                            clueButtons[i].style.color = "#1C477D"
+                            tempSet.splice(j, 1);
+                            break;
+                        };
+                    };
+                };
+                if (tempSet.length == 4) {
+                    // Adapted from https://www.geeksforgeeks.org/how-to-find-whether-all-element-contains-same-class-or-not/
+                    let tempSetArray = Array.from(tempSet);
+                    checkSet1 = tempSetArray.every((clue) => clue.classList.contains("set1"))
+                    checkSet2 = tempSetArray.every((clue) => clue.classList.contains("set2"))
+                    checkSet3 = tempSetArray.every((clue) => clue.classList.contains("set3"))
+                    checkSet4 = tempSetArray.every((clue) => clue.classList.contains("set4"))
+
+                    if (checkSet1 == true) {
+                        tempSet.forEach((button) => button.disabled = true);
+                        correctSets.push("Set 1");
+                        setCounter++;
+                        points++;
+                        tempSet = [];
+                    } else if (checkSet2 == true) {
+                        tempSet.forEach((button) => button.disabled = true);
+                        correctSets.push("Set 2");
+                        setCounter++;
+                        points++;
+                        tempSet = [];
+                    } else if (checkSet3 == true) {
+                        tempSet.forEach((button) => button.disabled = true);
+                        correctSets.push("Set 3");
+                        setCounter++;
+                        points++;
+                        tempSet = [];
+                    } else if (checkSet4 == true) {
+                        tempSet.forEach((button) => button.disabled = true);
+                        correctSets.push("Set 4");
+                        setCounter++;
+                        points++;
+                        tempSet = [];
+                    } else {
+                        document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/incorrectGroup.mp3') }}" type="audio/mpeg"></audio>`
+                        let k = 0;
+                        while (tempSet.length != 0) {
+                            if (tempSet[(tempSet.length - 1)] == clueButtons[k]) {
+                                clueButtons[k].style.backgroundColor = "#CBE0F4";
+                                clueButtons[k].style.color = "#1C477D"
+                                tempSet.pop()
+                                k = -1
+                                };
+                            k++;
+                        };
+                        if (setCounter == 2) {
+                            lives--;
+                            document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/loseLife.mp3') }}" type="audio/mpeg"></audio>`
+                            document.querySelector('#solving').innerHTML = "<h5>" + teams[scoringTeam].name + " now have " + lives + "lives remaining.</h5>"
+                        }
+                    };
+                    if (setCounter == 2) {
+                        document.querySelector('#solving').innerHTML = "<h5>" + teams[scoringTeam].name + " now have " + lives + " lives remaining.</h5>"
+                    }
+
+                    if (setCounter == 3) {
+                        lastSet = document.querySelectorAll('.clue-button:not([disabled])');
+                        lastSet.forEach((button) => {
+                            button.disabled = true;
+                            button.style.backgroundColor = colors[setCounter];
+                            button.style.color = "white";
+                        });
+                        clearInterval(timerCountdown);
+                        points++;
+                        let lastSetArray = Array.from(lastSet);
+                        checkSet1 = lastSetArray.every((clue) => clue.classList.contains("set1"));
+                        checkSet2 = lastSetArray.every((clue) => clue.classList.contains("set2"));
+                        checkSet3 = lastSetArray.every((clue) => clue.classList.contains("set3"));
+                        checkSet4 = lastSetArray.every((clue) => clue.classList.contains("set4"));
+                        if (checkSet1 == true) {
+                            correctSets.push("Set 1");
+                        } else if (checkSet2 == true) {
+                            correctSets.push("Set 2");
+                        } else if (checkSet3 == true) {
+                            correctSets.push("Set 3");
+                        } else if (checkSet4 == true) {
+                            correctSets.push("Set 4");
+                        };
+                        document.querySelector('#solving').innerHTML = "<h5>Congratulations, you found all of the groups! Now you can earn more points by finding the connections!</h5>";
+                        document.querySelector('#points').value = points;
+                        document.querySelector('#correctSets').value = JSON.stringify(correctSets);
+                        document.querySelector('#scoringTeam').value = scoringTeam;
+                        document.querySelector('#puzzle').value = puzzle;
+                        document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/ocFlurry.mp3') }}" type="audio/mpeg"></audio>`
+                        returnButton.disabled = false;
+                    };
+
+                    if (lives == 0) {
+                        document.querySelector('#solving').innerHTML = "<h5>You have run out of lives. But you still have a chance to earn points by finding the connections!</h5>";
+                        document.querySelector('#points').value = points;
+                        document.querySelector('#correctSets').value = JSON.stringify(correctSets);
+                        document.querySelector('#scoringTeam').value = scoringTeam;
+                        document.querySelector('#puzzle').value = puzzle;
+                        returnButton.disabled = false;
+                        for (let i = 0; i < 16; i++) {
+                            clueButtons[i].disabled = true;
+                        };
+                    };
+                    document.querySelector('#pointsIndicator').innerHTML = "Set Points: " + points;
+
+                };
+            });
+        };
+
+
+        function changeTimer() {
+            seconds -= 1;
+            document.querySelector('#timer').innerHTML = seconds;
+            if (seconds == 0) {
+                clearInterval(timerCountdown);
+                document.querySelector('#solving').innerHTML = "<h5>You have run out of time. But you still have a chance to earn more points by finding the connections!</h5>";
+                document.querySelector('#points').value = points;
+                document.querySelector('#correctSets').value = JSON.stringify(correctSets);
+                document.querySelector('#scoringTeam').value = scoringTeam;
+                document.querySelector('#puzzle').value = puzzle;
+                document.querySelector('#music').innerHTML = `<audio autoplay><source src="{{ url_for('static', filename='OnlyConnectSounds/timeUp.mp3') }}" type="audio/mpeg"></audio>`
+                returnButton.disabled = false;
+                for (let i = 0; i < 16; i++) {
+                    clueButtons[i].disabled = true;
+                }
+
+            };
+        }
+    });
+</script>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row text-center"><h1>Round 3: The Connecting Wall</h1></div>
+    <div class="row text-center" id="solving"><h5>{{ teams[currentTeam]["name"] }} are currently solving.</h5></div>
+    <div class="row">
+        <div class="col text-start" id="pointsIndicator">Set Points: 0</div>
+        <div class="col text-end" id="timer">180</div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row hieroglyph center">{{ hieroglyph }}</div>
+    <div class="wall-container">
+        <div class="puzzle-item"><button class="btn clue-button" id="clue1"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue2"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue3"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue4"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue5"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue6"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue7"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue8"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue9"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue10"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue11"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue12"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue13"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue14"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue15"></button></div>
+        <div class="puzzle-item"><button class="btn clue-button" id="clue16"></button></div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center"><button type="button" class="btn btn-primary btn-lg" id="start">Start Timer</button></div>
+    </div>
+</div>
+
+<div class="container">
+    <form class="center" action="/round3connections" method="POST">
+        <input type="hidden" id="correctSets" name="correctSets" value="">
+        <input type="hidden" id="points" name="points" value="">
+        <input type="hidden" id="scoringTeam" name="scoringTeam" value="">
+        <input type="hidden" id="puzzle" name="puzzle" value="">
+        <button type="submit" class="btn btn-primary btn-lg" disabled id="round3">What are the connections?</button>
+    </form>
+
+</div>
+
+<div id="music"></div>
+{% endblock %}
