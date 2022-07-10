@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, send_file
-import sys, random, only_connect, html, json
+import random, only_connect, html, json
 from OnlyConnect import vowelsPuzzle
 
 app = Flask(__name__)

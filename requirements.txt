@@ -3,3 +3,5 @@ Flask
 gunicorn
 psycopg2
 requests
+only_connect
+OnlyConnect
