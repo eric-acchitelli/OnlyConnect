@@ -1,5 +1,5 @@
 # ONLY CONNECT HOST ASSISTANT
-### Video Demo: https://youtu.be/hZPB58ne-wI
+### Video Demo: https://youtu.be/_VhhFh76-Xc
 ### Description:
 The Only Connect Host Assistant is an application designed to serve as a game-master aid for a homemade, in-person version of *Only Connect*, based on the BBC quiz show of the same name. Included in this repository are two different versions of the program: a command-line program run directly in the command-line of the terminal, `commandLineProgram.py`, and a Flask app utilizing HTML and JavaScript programming, which is implemented and called from `app.py`. A number of helper files and templates were created in directories `templates`, `static`, and `OnlyConnect`.
 
