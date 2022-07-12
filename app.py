@@ -3,6 +3,8 @@ import random, only_connect, html, json
 from OnlyConnect import vowelsPuzzle
 from flask_session import Session
 
+ALLOWED_EXTENSIONS = {'json'}
+
 app = Flask(__name__)
 app.secret_key = "VictoriaCoren-Mitchell"
 
@@ -16,21 +18,30 @@ teams = [0] * 2
 currentTeam = random.choice([0, 1])
 questionsPlayed = []
 
+# Code adapted from Flask documentation (https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/)
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
+# Code adapted from Flask documentation (https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/)
 @app.route("/load_game", methods=["GET","POST"])
 def load():
     if request.method == "POST":
-        file = request.form.get("filename")
-        if file.endswith('.json'):
-            session['gameFileName'] = file
+        if 'filename' not in request.files:
+            return render_template("invalid_file.html", message="File not found.")
+        file = request.files['filename']
+        if file.filename == '':
+            return render_template("invalid_file.html", message="Filename empty.")
+        if file and allowed_file(file.filename):
+            session['gameFileName'] = file.filename
             global gameSession
             gameSession = only_connect.OnlyConnect(file)
             return render_template("select_teams.html")
         else:
-            return render_template("invalid_file.html")
+            return render_template("invalid_file.html", message="Invalid file type.")
     else:
         return redirect("/")
 
