@@ -5,9 +5,8 @@ from OnlyConnect import Connection, Sequences, MissingVowels, ConnectingWall, Ti
 
 class OnlyConnect:
 
-    def __init__(self, file: str):
-        with open(file) as gameFile:
-            temp: Dict = json.load(gameFile)
+    def __init__(self, gameFile):
+        temp: Dict = json.load(gameFile)
 
         # Iterate through the question file for each found and create objects with the class matching the round.
         for roundIndex, round_ in enumerate(temp):
